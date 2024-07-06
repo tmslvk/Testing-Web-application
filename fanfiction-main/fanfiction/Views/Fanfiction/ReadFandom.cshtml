@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutFanfiction.cshtml";
+}
+
+@model fanfiction.Models.Fanfiction.FandomModel
+<div style="width: 80%; text-align: center; vertical-align: center">
+ @if (Model.IsSignedIn)
+ {
+     @Html.ActionLink(
+         string.Empty,
+         "AddFandom",
+         "Fanfiction",
+         new {fandomId = Model.fandom.FandomId},
+         new {@class = "bi bi-pen-fill"})
+ }
+    <h4 class="lang" key="Fandom"></h4>
+    <h4 class="lang mt-2" key="Category-Name"></h4>
+    <div class="border-dashed" style="width: 100%; margin: 0 auto">
+        @if (Model.lang == "ru")
+        {
+
+            <h3 style="white-space: pre; padding: 0; margin: 0 auto">@Model.fandom.RuName</h3>
+
+        }
+        else
+        {
+
+            <h3 style="white-space: pre; padding: 0; margin: 0 auto">@Model.fandom.EnName</h3>
+
+        }
+    </div>
+    <h4 class="lang mt-2" key="Description"></h4>
+    <div class="border-dashed" style="text-align: left; width: 100%;  margin: 0 auto">
+        @if (Model.lang == "ru")
+        {
+            <p style="white-space: pre-wrap">@Model.fandom.RuDescription</p>
+        }
+        else
+        {
+            <p style="white-space: pre-wrap">@Model.fandom.EnDescription</p>
+        }
+
+    </div>
+</div>
+    
+

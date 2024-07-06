@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+
+    <div class="left" style="display:inline-block;">
+        <div id="side-bar">
+            <form><button asp-action="Fanfiction" key="Fanfiction" class="m-3 lang side-bar-button"></button></form>
+            <form><button asp-action="AddFanfic" key="Add-fanfiction" class="m-3 lang side-bar-button"></button></form>
+            <form><button asp-action="ViewFandoms" key="Fandoms" class="m-3 lang side-bar-button"></button></form>
+            <form><button asp-action="ViewGenres" key="Genres" class="m-3 lang side-bar-button"></button></form>
+        </div>
+    </div>
+
+    <div class="right" style="display:inline-block;">
+       
+            @RenderBody()
+       
+    </div>
+

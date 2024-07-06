@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="fanfiction.Models.User.ApplicationUser">
+    <Position X="25.5" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.User.ProfileUser">
+    <Position X="23" Y="9" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.User.UserLog">
+    <Position X="25.25" Y="9.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+    <Lollipop Position="0.272" />
+  </Class>
+  <Class Name="fanfiction.Models.User.UserReg">
+    <Position X="27.5" Y="9.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="fanfiction.Models.Fanfiction.Fanfic">
+    <Position X="14.5" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.Fanfiction.FanficModel">
+    <Position X="14.5" Y="9.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.Fanfiction.FanfictionModel">
+    <Position X="20.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Controllers.FanfictionController">
+    <Position X="18.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Controllers.ProfileController">
+    <Position X="23" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Controllers.HomeController">
+    <Position X="21" Y="6" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.Fanfiction.Genre">
+    <Position X="16.5" Y="8.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.Fanfiction.GenreModel">
+    <Position X="16.5" Y="11.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Startup">
+    <Position X="18.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.Fanfiction.Fandom">
+    <Position X="12.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="fanfiction.Models.Fanfiction.FandomModel">
+    <Position X="12.25" Y="11.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="fanfiction.Models.User.Inretfaces.IActionResult">
+    <Position X="26.5" Y="12.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

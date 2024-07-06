@@ -1,0 +1,31 @@
+﻿
+<meta charset="utf-8" />
+
+
+@using fanfiction.Models.User
+@model UserReg
+
+<form asp-action="SignUp" method="post" asp-controller="Home" id="form">
+
+
+    <div class="text-center">
+        <p class="lang adapt" key="Sign-Up"></p>
+
+            <input asp-for="name" key="Name" class="lang mt-4 adapt" type="text" size="30" name="name" maxlength="40"  required><br>
+            <input asp-for="Email" key="Email" class="lang mt-3 adapt" type="email" size="30" name="email" maxlength="40" p required><br>
+            <input asp-for="Password" key="Password" class="lang mt-3 adapt" type="password" size="30" id="password" name="password" maxlength="40" required><br>
+            <input asp-for="PasswordConfirm" key="Repeat-Password"  class="lang mt-3 adapt" type="password" size="30" required ><br>
+            <input asp-for="Datetime" id="date" type="hidden">
+            <input asp-for="lang" id="lang" type="hidden">
+            <button onclick="SetDate()" key="Sign-Up" name="submit" class="lang btn mt-3 btn-dark adapt"></button>
+
+        </div>
+ 
+</form>
+@if (TempData["SignUpError"] != null)
+{
+<div id="alert" class="alert alert-danger alert-dismissible" style="margin-top: 20px; width: 100%">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    @TempData["SignUpError"].ToString()
+</div>
+}

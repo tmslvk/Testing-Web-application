@@ -1,0 +1,269 @@
+﻿@{
+    Layout =  "~/Views/Shared/_LayoutAccount.cshtml";
+}
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model fanfiction.Models.Fanfiction.FanficModel
+
+<div class="area">
+<div style="text-align: center">
+    @if (Model.isMine)
+    {
+        @Html.ActionLink(
+            string.Empty,
+            "AddFanfic",
+            "Fanfiction",
+            new
+            {
+                fanficId = Model.fanfic.FanficId
+            },
+            new {@class = "bi bi-pen-fill"})
+    }
+    <p class="m-0 lang" key="Average-rate"></p>
+    <p style="display: inline-block; background: linear-gradient(to right, #FFD700 @(Math.Round(Model.rateModel.average, 2) * 100)%, black 0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent" class="bi bi-star-fill"></p>
+
+    <p style="display: inline-block; background: linear-gradient(to right, #FFD700  @(Math.Round(Model.rateModel.average - 1, 2) * 100)%, black 0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent" class="bi bi-star-fill"></p>
+
+    <p style="display: inline-block; background: linear-gradient(to right, #FFD700 @(Math.Round(Model.rateModel.average - 2, 2) * 100)%, black 0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent" class="bi bi-star-fill"></p>
+
+    <p style="display: inline-block; background: linear-gradient(to right, #FFD700 @(Math.Round(Model.rateModel.average - 3, 2) * 100)%, black 0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent" class="bi bi-star-fill"></p>
+
+    <p style="display: inline-block; background: linear-gradient(to right, #FFD700 @(Math.Round(Model.rateModel.average - 4, 2) * 100)%, black 0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent" class="bi bi-star-fill"></p>
+    @if (Model.IsSignedIn)
+    {
+        @if (Model.rateModel.myRate != null)
+        {
+            <p class="m-0 lang" key="Your-rate"></p>
+            @for (int i = 0; i < 5; i++)
+            {
+                if (Model.rateModel.myRate.rate > i)
+                {
+                    <p style="display: inline-block; color: #FFD700 " class="bi bi-star-fill"></p>
+                }
+                else
+                {
+                    <p style="display: inline-block; color: black " class="bi bi-star-fill"></p>
+                }
+            }
+        }
+        else
+        {
+            <p class="m-0 lang" key="Set-rate"></p>
+            @for (int i = 0; i < 5; i++)
+            {
+                @Html.ActionLink(
+                    string.Empty,
+                    "SetRate",
+                    "Fanfiction",
+                    new
+                    {
+                        rateValue = i + 1,
+                        fanficId = Model.fanfic.FanficId
+                    },
+                    new {@class = "m-1 bi bi-star-fill rate-black"})
+            }
+
+        }
+    }
+</div>
+    <table class="profile-table data-table" id="profile-data-area">
+        <tr>
+            <th class="p-2 lang" key="Category-Name"></th>
+            <td>@Model.fanfic.Name</td>
+        </tr>
+        <tr>
+            <th class="p-2 lang" key="Fandom"></th>
+            @if (Model.lang == "ru")
+            {
+                <td> @Html.ActionLink(
+                         Model.fanfic.fandom.RuName,
+                         "ReadFandom",
+                         "Fanfiction",
+                         new {fandomId = Model.fanfic.fandom.FandomId})
+                </td>
+
+            }
+            else
+            {
+                <td> @Html.ActionLink(
+                         Model.fanfic.fandom.EnName,
+                         "ReadFandom",
+                         "Fanfiction",
+                         new {fandomId = Model.fanfic.fandom.FandomId})
+                </td>
+            }
+        </tr>
+        <tr>
+            <th class="p-2 lang" key="Genre"></th>
+            @if (Model.lang == "ru")
+            {
+                <td> @Html.ActionLink(
+                         Model.fanfic.genre.RuName,
+                         "ReadGenre",
+                         "Fanfiction",
+                         new {genreId = Model.fanfic.genre.GenreId})
+                </td>
+            }
+            else
+            {
+                <td> @Html.ActionLink(
+                         Model.fanfic.genre.EnName,
+                         "ReadGenre",
+                         "Fanfiction",
+                         new {genreId = Model.fanfic.genre.GenreId})
+                </td>
+            }
+        </tr>
+        <tr>
+            <th class="p-2 lang" key="Lang"></th>
+            <td class="lang" key="@Model.fanfic.Lang"></td>
+            
+        </tr>
+        <tr>
+            <th class="p-2 lang" key="Author"></th>
+            <td class="p-2">@Model.fanfic.Author.UserName</td>
+        </tr>
+    </table>
+    <h4 class="mt-2 lang" key="Description"></h4>
+<div class="border-dashed" style="text-align: left; width: 100%;  margin: 0 auto">
+    <p style="white-space: pre-wrap">@Model.fanfic.Description</p>
+
+
+</div>
+<h2 class="lang" key="Chapter-list" style="margin: auto; width: 90%; text-align: center"></h2>
+ <h4 style="margin-top: 40px" class="lang" key="Sorting"></h4>
+    @if (Model.isMine)
+    {
+        <input hidden value="1" id="countOfNotSortRows"/>
+    }
+    else
+    {
+        <input hidden value="0" id="countOfNotSortRows"/>
+    }
+    <select style="display: inline-block; width: 30%" id="fandom-select" name="select-lang" required>
+        <option class="p-2 lang">№</option>
+        <option class="p-2 lang" key="Category-Name"></option>
+        </select>
+        <input style="display: inline-block; width: 30%" id="filterInput" onkeyup="filter()">
+    <table class="sort table_col mt-5" id="filter" style="margin: auto; width: 90%;">
+        <thead  onselectstart="return false" onmousedown="return false" style="font-weight: bold">
+        <tr>
+            <td class="p-2">№</td>
+            <td colspan="3" class="p-2 lang" key="Category-Name"></td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model.fanfic.Chapters)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(
+                        c.ChapterNumber.ToString(),
+                        "ReadChapter",
+                        "Fanfiction",
+                        new {fanficId = c.FanficId, chapterNumber = c.ChapterNumber})
+                </td>
+                <td colspan="3">
+                    @Html.ActionLink(
+                        c.Title,
+                        "ReadChapter",
+                        "Fanfiction",
+                        new {fanficId = c.FanficId, chapterNumber = c.ChapterNumber})
+
+                </td>
+            </tr>
+        }
+        </tbody>
+        @if (Model.isMine)
+        {
+            <tr>
+
+                <th colspan="4" class="p-2">
+                    @Html.ActionLink(
+                        Model.lang == "ru" ? "Добавить главу" : "Add chapter",
+                        "AddChapter",
+                        "Fanfiction",
+                        new {fanficId = Model.fanfic.FanficId, chapterNumber = Model.fanfic.Chapters.Count + 1})
+
+                </th>
+            </tr>
+        }
+    </table>
+    
+    <h5 class="mt-2 lang" key="Comments"></h5>
+    @if (Model.IsSignedIn)
+    {
+        <form asp-action="AddComment" asp-controller="Fanfiction" method="POST">
+            <input asp-for="urComment.fanficId" value="@Model.fanfic.FanficId" hidden/>
+            <textarea asp-for="urComment.Text" id="description-text" style="resize: none" maxlength="1000" rows="5"></textarea>
+            <button type="submit" class="lang border-dashed mb-3" key="Send"></button>
+        </form>
+    }
+    @for (int i = Model.Comments.Count - 1; i >= 0; i--)
+    {
+        <table style="width: 100%; table-layout: fixed">
+            <tr class="border-dashed">
+
+                <th class="clip p-2 m-2" style="width: 150px; vertical-align: top">
+                    @Html.ActionLink(
+                        $"{ Model.Comments[i].Author.UserName}",
+                        "Profile",
+                        "Profile",
+                        new {userId = Model.Comments[i].Author.Id})
+                   
+                    @if (Model.Comments[i].Author.AvatarUrl != null)
+                    {
+                        <p style="text-align: center"><img src="@Model.Comments[i].Author.AvatarUrl" alt="" class="round"></p>
+                    }
+                    else
+                    {
+                        <p style="text-align: center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Anonymous_emblem.svg/1200px-Anonymous_emblem.svg.png" alt="" class="round">
+                        </p>
+                    }
+                </th>
+                <td class="border-dashed" style="white-space: pre-wrap">@Model.Comments[i].Text</td>
+
+
+            </tr>
+            <tr>
+
+
+        </table>
+    }
+    <br><br><br><br>
+</div>
+
+<style>
+.data-table
+{
+margin: auto; 
+width: 50%; 
+}
+.rate-gold
+{
+display: inline-block; 
+color: #FFD700 
+}
+.rate-black
+{
+display: inline-block; 
+color: #FFD700 
+}
+</style>
+<script>
+document.querySelector("#fandom-select").addEventListener('change', function (e) {
+  document.getElementById("filterInput").value = ''
+  filter()
+})
+
+</script>

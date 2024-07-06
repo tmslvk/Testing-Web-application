@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\fanfiction",
+    "\\fanfiction\\Controllers",
+    "\\fanfiction\\Data",
+    "\\fanfiction\\Models",
+    "\\fanfiction\\Models\\Fanfiction",
+    "\\fanfiction\\Views",
+    "\\fanfiction\\Views\\Fanfiction",
+    "\\fanfiction\\Views\\Home"
+  ],
+  "SelectedNode": "\\fanfiction\\Controllers\\FanfictionController.cs",
+  "PreviewInSolutionExplorer": false
+}
